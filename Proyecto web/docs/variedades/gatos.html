@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de Nombres para Gatos</title>
+  <meta name="description" content="Genera nombres originales y divertidos para tu gato con un solo clic." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+    header {
+      background-color: #4f46e5;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 8px rgb(79 70 229 / 0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2.8rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: #c7d2fe;
+    }
+    main {
+      background: white;
+      max-width: 480px;
+      margin: 3rem auto 4rem;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgb(0 0 0 / 0.05);
+      text-align: center;
+    }
+    #nombreGenerado {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 2rem 0 1.5rem;
+      color: #4f46e5;
+      min-height: 3rem;
+      user-select: text;
+    }
+    button {
+      background-color: #4f46e5;
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease;
+      margin: 0 0.5rem;
+      box-shadow: 0 6px 12px rgb(79 70 229 / 0.3);
+    }
+    button:hover {
+      background-color: #4338ca;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 18px rgb(67 56 202 / 0.4);
+    }
+    .btn-copiar {
+      background-color: #10b981;
+      box-shadow: 0 6px 12px rgb(16 185 129 / 0.3);
+    }
+    .btn-copiar:hover {
+      background-color: #059669;
+      box-shadow: 0 12px 18px rgb(5 150 105 / 0.5);
+    }
+    .volver {
+      display: inline-block;
+      margin-top: 3rem;
+      font-weight: 600;
+      color: #4f46e5;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .volver:hover {
+      color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Generador de Nombres para Gatos | Encuentra el nombre perfecto</h1>
+    <p>Encuentra nombres originales y divertidos para tu gato.</p>
+  </header>
+
+  <main>
+    <p>¿Buscas un nombre único y divertido para tu gato? Nuestro generador te ofrece miles de opciones originales para que encuentres el nombre perfecto para tu felino en segundos.</p>
+    <button id="generarBtn">Generar nombre</button>
+    <button id="copiarBtn" class="btn-copiar" style="display:none;">Copiar</button>
+    <div id="nombreGenerado" aria-live="polite" aria-atomic="true"></div>
+
+    <a href="/index/index.html" class="volver">← Volver al menú principal</a>
+  </main>
+
+  <footer style="text-align:center; padding:2rem; color:#6b7280;">
+    © 2025 GeneradorDeNombres.com
+  </footer>
+
+  <script>
+    const nombresGatos = [
+      "Misu", "Nala", "Pelusa", "Luna", "Simba", "Toby", "Milo", "Chispa",
+      "Canela", "Gizmo", "Coco", "Oreo", "Felix", "Zelda", "Tom", "Leo",
+      "Cleo", "Salem", "Moka", "Kira"
+    ];
+
+    const generarBtn = document.getElementById('generarBtn');
+    const nombreGenerado = document.getElementById('nombreGenerado');
+    const copiarBtn = document.getElementById('copiarBtn');
+
+    generarBtn.addEventListener('click', () => {
+      const indice = Math.floor(Math.random() * nombresGatos.length);
+      const nombre = nombresGatos[indice];
+      nombreGenerado.textContent = nombre;
+      copiarBtn.style.display = 'inline-block';
+    });
+
+    copiarBtn.addEventListener('click', () => {
+      const texto = nombreGenerado.textContent;
+      if (!texto) return;
+      navigator.clipboard.writeText(texto).then(() => {
+        copiarBtn.textContent = '¡Copiado!';
+        setTimeout(() => copiarBtn.textContent = 'Copiar', 1500);
+      });
+    });
+  </script>
+</body>
+</html>
